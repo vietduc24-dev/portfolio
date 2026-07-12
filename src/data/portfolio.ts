@@ -1,85 +1,130 @@
 export const portfolio = {
-  profile: {
-    name: "Tran Viet Duc",
-    role: "AWS-focused Full Stack Engineer",
-    location: "Japan / Remote",
+  hero: {
+    eyebrow: "AWS • Next.js • Amplify",
+    title: "I build portfolio-grade products with production-grade delivery.",
     intro:
-      "I design and ship fast web experiences on AWS with strong attention to security, DX, and CI/CD.",
-    summary:
-      "This portfolio is built with Next.js and shadcn/ui, then deployed from GitHub to AWS Amplify. The architecture stays simple for a public profile site, but still follows production habits: typed UI, automated checks, no committed secrets, and security headers at the edge.",
+      "My work sits between interface craft and cloud discipline. I design clear user journeys, structure maintainable component systems, and ship them through AWS with CI/CD and security guardrails already in place.",
+    location: "Japan / Remote",
     primaryCta: {
-      label: "Discuss a project",
+      label: "Start a conversation",
       href: "mailto:hello@example.com",
     },
     secondaryCta: {
-      label: "View GitHub",
+      label: "See GitHub",
       href: "https://github.com/your-handle",
     },
+    highlights: [
+      "App Router architecture with typed sections and reusable UI primitives",
+      "GitHub to Amplify delivery flow with branch previews and protected production",
+      "Public-repo-safe setup with secret scanning and security headers",
+    ],
   },
-  metrics: [
-    { label: "AWS services used", value: "Amplify, Route 53, ACM, CloudWatch" },
-    { label: "Delivery style", value: "GitHub-driven CI/CD with preview branches" },
-    { label: "Security baseline", value: "CSP, secret hygiene, automated checks" },
+  identity: {
+    name: "Tran Viet Duc",
+    role: "AWS-focused Full Stack Engineer",
+    summary:
+      "I care about the parts that usually get skipped in portfolio projects: structure, deployment discipline, and the ability to evolve the codebase without turning it into a landing-page monolith.",
+    principles: [
+      {
+        title: "Story first",
+        description:
+          "The page should read like a narrative: context, capabilities, proof, and then a clean path to contact.",
+      },
+      {
+        title: "System second",
+        description:
+          "Every visual block should be reusable, data-driven, and easy to move as the portfolio grows.",
+      },
+      {
+        title: "Cloud aware",
+        description:
+          "Frontend decisions are made with deployment, DNS, TLS, branch strategy, and repository safety in mind.",
+      },
+    ],
+  },
+  timeline: [
+    {
+      step: "01",
+      title: "Shape the story",
+      description:
+        "Define what the visitor should understand in under a minute: who I am, how I think, and what I can ship reliably.",
+    },
+    {
+      step: "02",
+      title: "Build the system",
+      description:
+        "Split the UI into App Router-friendly sections, typed content modules, and isolated illustrations instead of inline decoration.",
+    },
+    {
+      step: "03",
+      title: "Ship with guardrails",
+      description:
+        "Use GitHub CI and AWS Amplify so every content or code change moves through the same predictable release path.",
+    },
   ],
-  services: [
+  capabilities: [
     {
-      title: "Frontend engineering",
+      title: "Narrative UI architecture",
       description:
-        "Next.js App Router, TypeScript, accessible UI patterns, responsive build quality, and component systems based on shadcn/ui.",
+        "Storytelling page structures, section sequencing, and interfaces that feel intentional instead of generic template output.",
+      tags: ["App Router", "Section composition", "Responsive systems"],
     },
     {
-      title: "AWS delivery",
+      title: "Component discipline",
       description:
-        "Static and SSR deployments with Amplify Hosting, custom domain setup, branch previews, environment isolation, and release discipline.",
+        "Clear separation between data, section components, primitives, and decorative assets such as SVG scenes and dividers.",
+      tags: ["shadcn/ui patterns", "Typed props", "Design tokens"],
     },
     {
-      title: "DevSecOps mindset",
+      title: "AWS delivery workflow",
       description:
-        "Public-repo-safe configuration, least-privilege thinking, environment separation, and CI checks before every merge.",
+        "Amplify Hosting, Route 53, ACM, environment variables, preview branches, and production deployment review habits.",
+      tags: ["Amplify", "Route 53", "CI/CD"],
     },
   ],
   projects: [
     {
       name: "Cloud-native Portfolio",
       period: "2026",
+      summary:
+        "A personal site rebuilt as a storytelling application with component boundaries, deploy-ready AWS configuration, and a public-repo-safe baseline.",
       stack: ["Next.js 16", "React 19", "Tailwind CSS 4", "AWS Amplify"],
-      outcome:
-        "A fast personal site with branch previews, production deploys from GitHub, and a security checklist suitable for an open repository.",
+      impact: [
+        "Moved from a single hardcoded page to a section-based architecture",
+        "Pinned package manager and CI behavior for stable cloud builds",
+        "Prepared custom domain and Route 53 friendly deployment flow",
+      ],
     },
     {
-      name: "Internal Delivery Starter",
+      name: "Delivery Starter",
       period: "2025",
-      stack: ["GitHub Actions", "TypeScript", "AWS"],
-      outcome:
-        "Standardized lint, typecheck, and build gates to reduce regressions before cloud deployment.",
-    },
-    {
-      name: "Frontend Platform Refresh",
-      period: "2024",
-      stack: ["Design System", "Component Library", "Accessibility"],
-      outcome:
-        "Reduced UI inconsistency by building reusable primitives and a clearer design language for product teams.",
+      summary:
+        "A reference setup for frontend teams that need predictable checks before anything reaches production hosting.",
+      stack: ["GitHub Actions", "TypeScript", "Security scans"],
+      impact: [
+        "Automated lint, typecheck, and build verification",
+        "Added secret scanning for public repositories",
+        "Reduced ad-hoc release steps across projects",
+      ],
     },
   ],
-  awsHighlights: [
-    "Amplify Hosting for CI/CD and preview environments",
-    "Route 53 + ACM for custom domain and TLS",
-    "CloudWatch for runtime visibility when the stack grows",
-    "IAM-based least privilege for any future backend integration",
-  ],
-  skills: [
+  stack: [
     "Next.js",
     "TypeScript",
-    "shadcn/ui",
     "Tailwind CSS",
+    "shadcn/ui",
     "AWS Amplify",
+    "Route 53",
+    "ACM",
     "GitHub Actions",
     "Security Headers",
-    "Responsive UI",
   ],
-  contact: [
-    { label: "Email", value: "hello@example.com", href: "mailto:hello@example.com" },
-    { label: "GitHub", value: "github.com/your-handle", href: "https://github.com/your-handle" },
-    { label: "LinkedIn", value: "linkedin.com/in/your-handle", href: "https://linkedin.com/in/your-handle" },
-  ],
-};
+  contact: {
+    heading: "If the site should feel sharp in the browser and stable in production, we should talk.",
+    channels: [
+      { label: "Email", value: "hello@example.com", href: "mailto:hello@example.com" },
+      { label: "GitHub", value: "github.com/your-handle", href: "https://github.com/your-handle" },
+      { label: "LinkedIn", value: "linkedin.com/in/your-handle", href: "https://linkedin.com/in/your-handle" },
+    ],
+  },
+} as const;

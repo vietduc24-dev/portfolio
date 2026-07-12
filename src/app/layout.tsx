@@ -1,5 +1,10 @@
 import type { Metadata } from "next";
 import "./globals.css";
+import { PortfolioHeader } from "@/components/portfolio/portfolio-header";
+import { PortfolioFooter } from "@/components/portfolio/portfolio-footer";
+import { SmoothScroll } from "@/components/portfolio/smooth-scroll";
+import { BackToTop } from "@/components/portfolio/back-to-top";
+import { LanguageProvider } from "@/context/language-context";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL;
 
@@ -24,8 +29,22 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="h-full scroll-smooth antialiased">
-      <body className="min-h-full flex flex-col">{children}</body>
+    <html lang="en" className="antialiased">
+      <body className="min-h-screen selection:bg-[color:var(--primary-container)] selection:text-[color:var(--on-primary-container)]">
+        <LanguageProvider>
+          <SmoothScroll>
+            <div className="py-2 md:py-6 px-2 md:px-6 w-full min-h-screen flex justify-center">
+              {/* The Floating Window */}
+              <div className="w-full max-w-[1440px] rounded-3xl md:rounded-[40px] bg-[color:var(--background)] shadow-2xl border border-[color:var(--border)] relative flex flex-col min-h-[calc(100vh-1rem)] md:min-h-[calc(100vh-3rem)]">
+                <PortfolioHeader />
+                <main className="flex-1 flex flex-col">{children}</main>
+                <PortfolioFooter />
+                <BackToTop />
+              </div>
+            </div>
+          </SmoothScroll>
+        </LanguageProvider>
+      </body>
     </html>
   );
 }
