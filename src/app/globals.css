@@ -1,20 +1,114 @@
 @import "tailwindcss";
 
 :root {
-  --background: #eef2f6;
-  --foreground: #152033;
-  --surface: rgba(255, 255, 255, 0.6);
-  --card: rgba(255, 255, 255, 0.78);
-  --border: rgba(21, 32, 51, 0.11);
-  --muted-foreground: #5e687b;
-  --ring: #f78f59;
+  color-scheme: light;
+
+  --background: #ffffff;
+  --foreground: #0f172a;
+  --surface: rgba(255, 255, 255, 0.85);
+  --card: rgba(255, 255, 255, 0.95);
+  --border: rgba(147, 197, 253, 0.4);
+  --muted-foreground: #64748b;
+  --ring: #3b82f6;
+
+  --surface-dim: #f1f5f9;
+  --surface-bright: #ffffff;
+  --surface-container-lowest: #ffffff;
+  --surface-container-low: #f8fafc;
+  --surface-container: #f1f5f9;
+  --surface-container-high: #e2e8f0;
+  --surface-container-highest: #cbd5e1;
+  --on-surface: #0f172a;
+  --on-surface-variant: #475569;
+  --inverse-surface: #0f172a;
+  --inverse-on-surface: #f1f5f9;
+  --outline: #94a3b8;
+  --outline-variant: #cbd5e1;
+  --surface-tint: #3b82f6;
+  --primary: #2563eb;
+  --on-primary: #ffffff;
+  --primary-container: #dbeafe;
+  --on-primary-container: #1e3a8a;
+  --inverse-primary: #60a5fa;
+  --secondary: #0284c7;
+  --on-secondary: #ffffff;
+  --secondary-container: #e0f2fe;
+  --on-secondary-container: #075985;
+  --tertiary: #059669;
+  --on-tertiary: #ffffff;
+  --tertiary-container: #d1fae5;
+  --on-tertiary-container: #064e3b;
+  --error: #dc2626;
+  --on-error: #ffffff;
+  --error-container: #fee2e2;
+  --on-error-container: #991b1b;
+  --primary-fixed: #dbeafe;
+  --primary-fixed-dim: #93c5fd;
+  --on-primary-fixed: #1e3a8a;
+  --on-primary-fixed-variant: #1e40af;
+  --secondary-fixed: #e0f2fe;
+  --secondary-fixed-dim: #7dd3fc;
+  --on-secondary-fixed: #075985;
+  --on-secondary-fixed-variant: #0369a1;
+  --tertiary-fixed: #d1fae5;
+  --tertiary-fixed-dim: #6ee7b7;
+  --on-tertiary-fixed: #064e3b;
+  --on-tertiary-fixed-variant: #047857;
+  --surface-variant: #e2e8f0;
+
+  --font-display: Inter, "Segoe UI Variable", "Helvetica Neue", sans-serif;
+  --font-body: Inter, "Segoe UI Variable", "Helvetica Neue", sans-serif;
+  --font-label: Geist, "IBM Plex Mono", "SFMono-Regular", Consolas, monospace;
+
+  --text-display-lg: 72px;
+  --text-display-lg-mobile: 48px;
+  --text-headline-xl: 40px;
+  --text-headline-xl-mobile: 32px;
+  --text-headline-md: 24px;
+  --text-body-lg: 18px;
+  --text-body-md: 16px;
+  --text-label-md: 14px;
+
+  --leading-display: 1.1;
+  --leading-headline: 1.2;
+  --leading-headline-md: 1.3;
+  --leading-body: 1.6;
+  --leading-label: 1;
+
+  --tracking-display: -0.04em;
+  --tracking-display-mobile: -0.02em;
+  --tracking-headline: -0.02em;
+  --tracking-label: 0.05em;
+
+  --radius-sm: 0.25rem;
+  --radius-default: 0.5rem;
+  --radius-md: 0.75rem;
+  --radius-lg: 1rem;
+  --radius-xl: 1.5rem;
+  --radius-full: 9999px;
+
+  --container-max: 1200px;
+  --gutter: 24px;
+  --section-padding-desktop: 120px;
+  --section-padding-mobile: 64px;
+  --base-unit: 8px;
+
+  --glass-bg: linear-gradient(180deg,
+      rgba(255, 255, 255, 0.8) 0%,
+      rgba(248, 250, 252, 0.6) 100%);
+  --glass-border: rgba(59, 130, 246, 0.15);
+  --glass-highlight: rgba(255, 255, 255, 0.6);
+  --shadow-soft: 0 10px 40px rgba(15, 23, 42, 0.06);
+  --shadow-glow: 0 0 0 1px rgba(37, 99, 235, 0.1), 0 10px 40px rgba(37, 99, 235, 0.12);
+  --accent-gradient: linear-gradient(135deg, #2563eb 0%, #0ea5e9 100%);
+  --background-gradient: radial-gradient(circle at 50% 0%, #e2e8f0, #cbd5e1);
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-  --font-sans: "Avenir Next", "Segoe UI Variable", "Helvetica Neue", sans-serif;
-  --font-mono: "IBM Plex Mono", "SFMono-Regular", "SF Mono", Consolas, monospace;
+  --font-sans: var(--font-body);
+  --font-mono: var(--font-label);
 }
 
 * {
@@ -26,9 +120,14 @@ html {
 }
 
 body {
-  background: var(--background);
+  min-height: 100vh;
+  background: var(--background-gradient);
+  background-attachment: fixed;
   color: var(--foreground);
-  font-family: "Avenir Next", "Segoe UI Variable", "Helvetica Neue", sans-serif;
+  font-family: var(--font-body);
+  font-size: var(--text-body-md);
+  line-height: var(--leading-body);
+  text-rendering: optimizeLegibility;
 }
 
 a {
@@ -36,7 +135,134 @@ a {
   text-decoration: none;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin: 0;
+  font-family: var(--font-display);
+}
+
+h1 {
+  font-size: var(--text-display-lg-mobile);
+  font-weight: 800;
+  line-height: var(--leading-display);
+  letter-spacing: var(--tracking-display-mobile);
+}
+
+h2 {
+  font-size: var(--text-headline-xl-mobile);
+  font-weight: 700;
+  line-height: var(--leading-headline);
+  letter-spacing: var(--tracking-headline);
+}
+
+h3 {
+  font-size: var(--text-headline-md);
+  font-weight: 600;
+  line-height: var(--leading-headline-md);
+}
+
+p {
+  margin: 0;
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+@media (min-width: 768px) {
+  h1 {
+    font-size: var(--text-display-lg);
+    letter-spacing: var(--tracking-display);
+  }
+
+  h2 {
+    font-size: var(--text-headline-xl);
+  }
+}
+
 ::selection {
-  background: rgba(247, 143, 89, 0.24);
-  color: var(--foreground);
+  background: rgba(37, 99, 235, 0.2);
+  color: #0f172a;
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slide-up {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes draw-line {
+  from {
+    height: 0;
+  }
+
+  to {
+    height: 100%;
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-slide-up {
+  animation: slide-up 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.animate-draw-line {
+  animation: draw-line 1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+.stagger-1 {
+  animation-delay: 100ms;
+}
+
+.stagger-2 {
+  animation-delay: 200ms;
+}
+
+.stagger-3 {
+  animation-delay: 300ms;
+}
+
+.stagger-4 {
+  animation-delay: 400ms;
+}
+
+.stagger-5 {
+  animation-delay: 500ms;
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .animate-fade-in,
+  .animate-slide-up,
+  .animate-draw-line {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
 }
