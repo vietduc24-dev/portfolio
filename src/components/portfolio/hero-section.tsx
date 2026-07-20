@@ -3,6 +3,7 @@
 import { motion, useScroll, useTransform } from "framer-motion";
 import { useLanguage } from "@/context/language-context";
 import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
+import { imageUrl } from "@/lib/images";
 
 export function HeroSection() {
   const { scrollY } = useScroll();
@@ -85,7 +86,7 @@ export function HeroSection() {
         <div className="w-full h-full bg-slate-100 rounded-t-[2rem] md:rounded-t-[3rem] overflow-hidden shadow-2xl flex flex-col items-center justify-end">
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/home.jpg"
+            src={imageUrl("images/home.JPG")}
             alt="Portrait"
             className="w-full h-full object-cover object-center transition-all duration-700"
           />
