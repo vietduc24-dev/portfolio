@@ -7,6 +7,7 @@ import {
   MonitorSmartphone,
   Shield,
 } from "lucide-react";
+import { imageUrl } from "@/lib/images";
 
 const enData = {
   personal: {
@@ -91,7 +92,7 @@ const enData = {
       impact: "Enabled digitalized home renovation workflows with seamless 2D/3D visualization and quotation management.",
       github: "https://github.com/vietduc24-dev",
       demo: "#",
-      image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2871&auto=format&fit=crop"
+      image: imageUrl("projects/housescan-saas.jpg", "https://images.unsplash.com/photo-1503387762-592deb58ef4e?q=80&w=2871&auto=format&fit=crop")
     },
     {
       id: "video-app",
@@ -104,7 +105,7 @@ const enData = {
       impact: "Ensured application stability in production and successfully released on Google Play and Apple App Store.",
       github: "https://github.com/vietduc24-dev",
       demo: "#",
-      image: "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=2874&auto=format&fit=crop"
+      image: imageUrl("projects/video-app.jpg", "https://images.unsplash.com/photo-1611162617474-5b21e879e113?q=80&w=2874&auto=format&fit=crop")
     },
     {
       id: "hagiwara-b2b",
@@ -117,7 +118,7 @@ const enData = {
       impact: "Streamlined the B2B ordering process and procurement workflow from product search to transaction tracking.",
       github: "https://github.com/vietduc24-dev",
       demo: "#",
-      image: "https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=2870&auto=format&fit=crop"
+      image: imageUrl("projects/hagiwara-b2b.jpg", "https://images.unsplash.com/photo-1563013544-824ae1b704d3?q=80&w=2870&auto=format&fit=crop")
     }
   ],
   awsJourney: [
