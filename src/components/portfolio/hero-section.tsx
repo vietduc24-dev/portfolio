@@ -1,96 +1,56 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
+import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 import { useLanguage } from "@/context/language-context";
-import { ArrowUpRight, Github, Linkedin, Mail } from "lucide-react";
 import { imageUrl } from "@/lib/images";
 
 export function HeroSection() {
-  const { scrollY } = useScroll();
-  const y = useTransform(scrollY, [0, 500], [0, 150]);
-  const opacity = useTransform(scrollY, [0, 300], [1, 0]);
   const { data } = useLanguage();
 
   return (
-    <section id="home" className="relative flex flex-col h-auto min-h-[750px] md:min-h-[700px] md:h-[90vh] w-full overflow-hidden rounded-t-[2.5rem] bg-[color:var(--background)]">
-      {/* Huge Background Text */}
+    <section id="home" className="mx-auto grid w-full max-w-[1240px] grid-cols-1 gap-10 px-5 md:px-10 lg:grid-cols-[531px_1fr] lg:items-start lg:px-0">
       <motion.div
-        style={{ y, opacity }}
-        className="absolute top-[8%] md:top-[12%] left-0 right-0 w-full flex justify-center select-none pointer-events-none z-0"
+        initial={{ opacity: 0, y: 28 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.6 }}
+        className="flex flex-col items-start gap-[35px]"
       >
-        <h1
-          className="text-[16vw] md:text-[13vw] font-black text-transparent leading-[0.85] text-center whitespace-pre-wrap"
-          style={{ WebkitTextStroke: "2px rgba(37, 99, 235, 0.2)" }}
-        >
-          {data.personal.name.split(" ").slice(0,).join(" ").toUpperCase()}
+        <p className="w-fit rounded-[7px] bg-[#b9ff66] px-[7px] text-[20px] font-medium leading-tight text-black">
+          {data.personal.title}
+        </p>
+        <h1 className="max-w-[560px] text-[43px] font-medium leading-[1.12] tracking-[0] text-black md:text-[60px]">
+          {data.personal.name}
         </h1>
+        <p className="max-w-[540px] text-[18px] leading-7 text-black md:text-[20px]">
+          {data.personal.about}
+        </p>
+        <div className="flex flex-col gap-4 sm:flex-row">
+          <a className="inline-flex items-center justify-center gap-3 rounded-[14px] bg-[#191a23] px-[35px] py-5 text-center text-[20px] leading-7 !text-white" href="#projects">
+            View projects
+            <ArrowUpRight className="h-5 w-5" />
+          </a>
+          <a className="rounded-[14px] border border-[#191a23] px-[35px] py-5 text-center text-[20px] leading-7 text-black transition-colors hover:bg-[#b9ff66]" href={`mailto:${data.personal.email}`}>
+            Contact me
+          </a>
+        </div>
       </motion.div>
 
-      {/* Content Container */}
-      <div className="absolute inset-0 flex flex-col justify-end z-20 px-6 lg:px-12 pb-[380px] md:pb-12 pointer-events-none">
-        <div className="flex flex-col md:flex-row items-center md:items-end justify-between w-full pb-10 gap-8 md:gap-0">
-
-          {/* Left side: Role & CTA */}
-          <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="flex flex-col gap-4 max-w-sm pointer-events-auto items-center md:items-start text-center md:text-left bg-white/50 md:bg-transparent backdrop-blur-sm md:backdrop-blur-none p-4 md:p-0 rounded-2xl w-full"
-          >
-            <h2 className="text-4xl md:text-5xl font-bold text-slate-900">
-              {data.personal.title}
-            </h2>
-            <p className="text-lg text-slate-600">
-              {data.personal.description}
-            </p>
-            <div className="mt-4">
-              <a href="#projects" className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-full text-sm font-medium transition-colors inline-flex items-center gap-2 shadow-[0_8px_30px_rgb(37,99,235,0.3)]">
-                Let&apos;s collaborate <ArrowUpRight size={16} />
-              </a>
-            </div>
-          </motion.div>
-
-          {/* Right side: Socials */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="flex flex-wrap md:flex-col gap-3 justify-center md:items-end pointer-events-auto mt-4 md:mt-0"
-          >
-            {data.socials.map((social) => (
-              <a
-                key={social.name}
-                href={social.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="flex h-12 w-12 items-center justify-center rounded-full border border-slate-300 bg-white text-slate-600 hover:border-blue-500 hover:text-blue-600 hover:shadow-sm transition-all"
-              >
-                <span className="w-7 flex justify-center group-hover:scale-110 transition-transform">
-                  {social.name === 'GitHub' && <Github size={18} />}
-                  {social.name === 'LinkedIn' && <Linkedin size={18} />}
-                  {social.name === 'Email' && <Mail size={18} />}
-                </span>
-              </a>
-            ))}
-          </motion.div>
-        </div>
-      </div>
-
-      {/* Center Portrait - Pinned to bottom */}
       <motion.div
-        initial={{ y: 200, opacity: 0 }}
-        animate={{ y: 0, opacity: 1 }}
-        transition={{ duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-[280px] h-[350px] md:w-[480px] md:h-[600px] z-10 flex justify-center items-end"
+        initial={{ opacity: 0, scale: 0.96 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 0.7, delay: 0.1 }}
+        className="relative mx-auto min-h-[430px] w-full max-w-[560px] overflow-hidden"
       >
-        <div className="w-full h-full bg-slate-100 rounded-t-[2rem] md:rounded-t-[3rem] overflow-hidden shadow-2xl flex flex-col items-center justify-end">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
-            src={imageUrl("images/home.JPG")}
-            alt="Portrait"
-            className="w-full h-full object-cover object-center transition-all duration-700"
-          />
+        <div className="absolute left-[12%] top-[15%] h-[68%] w-[78%] rotate-[29deg] rounded-[50%] border-[22px] border-[#191a23]" />
+        <div className="absolute left-[7%] top-[28%] h-[68%] w-[78%] rotate-[29deg] rounded-[50%] border-[22px] border-[#191a23]" />
+        <div className="absolute left-[2%] top-[41%] h-[68%] w-[78%] rotate-[29deg] rounded-[50%] border-[22px] border-[#191a23]" />
+        <div className="absolute left-[22%] top-[2%] h-[360px] w-[270px] overflow-hidden rounded-[45px] border border-[#191a23] bg-[#f3f3f3] shadow-[0_5px_0_#191a23]">
+          <img alt={data.personal.name} className="h-full w-full object-cover" src={imageUrl("images/home.JPG")} />
         </div>
+        <div className="absolute left-[67%] top-[8%] flex h-20 w-20 items-center justify-center rounded-full bg-[#b9ff66] text-[36px] font-medium">★</div>
+        <div className="absolute left-[7%] top-[9%] text-[52px] leading-none">✦</div>
       </motion.div>
     </section>
   );
