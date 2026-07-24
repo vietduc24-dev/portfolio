@@ -1,78 +1,63 @@
 "use client";
 
 import Link from "next/link";
+import { Github, Linkedin, Mail, Sparkle } from "lucide-react";
 import { useLanguage } from "@/context/language-context";
-import { ArrowUp, Terminal } from "lucide-react";
-import { buttonVariants } from "@/components/ui/button";
-import { cn } from "@/lib/utils";
+
+function SocialIcon({ name }: { name: string }) {
+  if (name === "GitHub") return <Github className="h-5 w-5" />;
+  if (name === "LinkedIn") return <Linkedin className="h-5 w-5" />;
+  return <Mail className="h-5 w-5" />;
+}
 
 export function PortfolioFooter() {
   const { data } = useLanguage();
 
   return (
-    <footer className="border-t border-[color:var(--border)] bg-[color:var(--surface-container-lowest)] py-16 mt-24">
-      <div className="mx-auto w-full max-w-7xl px-6 lg:px-8">
-        <div className="grid gap-12 md:grid-cols-3">
-          <div className="space-y-6">
-            <Link href="#" className="flex items-center gap-2 text-[color:var(--on-surface)] group cursor-pointer transition-colors hover:text-[color:var(--primary)]">
-              <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[color:var(--primary-container)] text-[color:var(--on-primary-container)] transition-transform group-hover:scale-105">
-                <Terminal size={18} />
-              </div>
-              <span className="font-display font-semibold tracking-tight text-lg">
-                Duc.dev
-              </span>
-            </Link>
-            <p className="text-sm text-[color:var(--muted-foreground)] max-w-xs leading-relaxed">
-              {data.personal.description}
-            </p>
-          </div>
-
-          <div className="grid grid-cols-2 gap-8 md:col-span-2">
-            <div>
-              <h3 className="font-semibold mb-6 text-[color:var(--on-surface)]">Navigation</h3>
-              <ul className="space-y-4">
-                {data.navigation.slice(0, 4).map((item) => (
-                  <li key={item.name}>
-                    <Link href={item.href} className="text-sm text-[color:var(--muted-foreground)] hover:text-[color:var(--primary)] transition-colors cursor-pointer">
-                      {item.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-            <div>
-              <h3 className="font-semibold mb-6 text-[color:var(--on-surface)]">More</h3>
-              <ul className="space-y-4">
-                {data.navigation.slice(4).map((item) => (
-                  <li key={item.name}>
-                    <Link href={item.href} className="text-sm text-[color:var(--muted-foreground)] hover:text-[color:var(--primary)] transition-colors cursor-pointer">
-                      {item.name}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
-        </div>
-
-        <div className="mt-16 pt-8 border-t border-[color:var(--border)] flex flex-col-reverse md:flex-row items-center justify-between gap-6">
-          <div className="text-sm font-medium text-[color:var(--muted-foreground)]">
-            &copy; {new Date().getFullYear()} {data.personal.name}. All rights reserved.
-          </div>
-          <div className="flex gap-4">
+    <footer className="mx-auto mt-[140px] w-full max-w-[1240px] px-5 md:px-10 lg:px-0">
+      <div className="rounded-t-[45px] bg-[#191a23] px-8 py-[50px] text-white md:px-[60px] md:pt-[55px]">
+        <div className="flex flex-col gap-10 lg:flex-row lg:items-center lg:justify-between">
+          <Link href="#" className="flex items-center gap-3">
+            <span className="flex h-9 w-9 items-center justify-center rounded-full bg-white text-[#191a23]">
+              <Sparkle size={20} />
+            </span>
+            <span className="text-[25px] font-medium leading-none">Tran Viet Duc</span>
+          </Link>
+          <nav className="flex flex-col gap-5 text-[18px] underline md:flex-row md:gap-10">
+            {data.navigation.filter((item) => item.href !== "#home").slice(0, 5).map((item) => (
+              <a href={item.href} key={item.href}>
+                {item.name}
+              </a>
+            ))}
+          </nav>
+          <div className="flex gap-3">
             {data.socials.map((social) => (
-              <a
-                key={social.name}
-                href={social.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-sm font-medium text-[color:var(--muted-foreground)] hover:text-[color:var(--primary)] transition-colors cursor-pointer"
-                aria-label={social.name}
-              >
-                {social.name}
+              <a className="flex h-[34px] w-[34px] items-center justify-center rounded-full bg-white text-[#191a23]" href={social.url} key={social.name} aria-label={social.name}>
+                <SocialIcon name={social.name} />
               </a>
             ))}
           </div>
+        </div>
+
+        <div className="mt-[66px] grid gap-10 lg:grid-cols-[332px_1fr] lg:gap-[154px]">
+          <div className="flex flex-col gap-[27px]">
+            <h2 className="w-fit rounded-[7px] bg-[#b9ff66] px-[7px] text-[20px] font-medium leading-tight tracking-[0] text-black">Contact:</h2>
+            <div className="flex flex-col gap-5 text-[18px] leading-normal">
+              <p>Email: {data.personal.email}</p>
+              <p>Phone: {data.personal.phone}</p>
+              <p>{data.personal.title}</p>
+            </div>
+          </div>
+          <div className="rounded-[14px] bg-[#292a32] p-8 md:p-[58px_40px]">
+            <p className="max-w-[600px] text-[22px] leading-relaxed">
+              {data.personal.description}
+            </p>
+          </div>
+        </div>
+
+        <div className="mt-[50px] flex flex-col gap-[50px] border-t border-white pt-[50px] text-[18px] leading-7 md:flex-row md:gap-10">
+          <p>© 2026 {data.personal.name}. All Rights Reserved.</p>
+          <a className="underline" href="#home">Back to top</a>
         </div>
       </div>
     </footer>
