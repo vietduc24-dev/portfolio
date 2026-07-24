@@ -3,10 +3,9 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 import { cn } from "@/lib/utils";
-import { buttonVariants } from "@/components/ui/button";
 import { useLanguage } from "@/context/language-context";
 import { MobileNavigation } from "./mobile-navigation";
-import { Terminal } from "lucide-react";
+import { Sparkle } from "lucide-react";
 
 export function PortfolioHeader() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -40,34 +39,33 @@ export function PortfolioHeader() {
   return (
     <header
       className={cn(
-        "sticky top-0 z-50 w-full transition-all duration-300 rounded-t-3xl md:rounded-t-[40px]",
+        "sticky top-0 z-50 w-full transition-all duration-300",
         isScrolled 
-          ? "bg-[color:var(--surface)]/80 backdrop-blur-md shadow-sm border-b border-[color:var(--border)] py-4"
-          : "bg-[color:var(--background)] py-6"
+          ? "border-b border-[#191a23] bg-white/90 py-4 backdrop-blur-md"
+          : "bg-white py-6 md:py-[34px]"
       )}
     >
-      <div className="mx-auto flex w-full max-w-7xl items-center justify-between px-6 lg:px-8">
-        <Link href="#" className="flex items-center gap-2 text-[color:var(--on-surface)] group cursor-pointer transition-colors hover:text-[color:var(--primary)]">
-          <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-[color:var(--primary-container)] text-[color:var(--on-primary-container)] transition-transform group-hover:scale-105">
-            <Terminal size={18} />
+      <div className="mx-auto flex w-full max-w-[1240px] items-center justify-between px-5 md:px-10 lg:px-0">
+        <Link href="#" className="group flex items-center gap-3 text-black">
+          <div className="flex h-9 w-9 items-center justify-center rounded-full bg-[#191a23] text-[#b9ff66] transition-transform group-hover:rotate-12">
+            <Sparkle size={20} />
           </div>
-          <span className="font-display font-semibold tracking-tight text-lg">
-            Duc<span className="text-[color:var(--primary)]">.dev</span>
+          <span className="text-[25px] font-medium leading-none tracking-[0]">
+            Tran Viet Duc
           </span>
         </Link>
 
-        {/* Desktop Nav */}
-        <nav className="hidden md:flex items-center gap-8">
-          <ul className="flex items-center gap-8">
-            {data.navigation.map((item) => (
+        <nav className="hidden items-center gap-8 lg:flex">
+          <ul className="flex items-center gap-8 text-[18px] leading-7">
+            {data.navigation.filter((item) => item.href !== "#home").map((item) => (
               <li key={item.name}>
                 <Link
                   href={item.href}
                   className={cn(
-                    "text-sm font-medium transition-colors hover:text-[color:var(--primary)] cursor-pointer",
+                    "transition-colors hover:text-black",
                     activeSection === item.href.substring(1) 
-                      ? "text-[color:var(--primary)]" 
-                      : "text-[color:var(--muted-foreground)]"
+                      ? "text-black" 
+                      : "text-[#191a23]/75"
                   )}
                 >
                   {item.name}
@@ -75,22 +73,15 @@ export function PortfolioHeader() {
               </li>
             ))}
           </ul>
-          <div className="h-5 w-px bg-[color:var(--border)]" />
-          <div className="flex items-center gap-4">
-            <button
-              onClick={toggleLanguage}
-              className="text-sm font-semibold text-[color:var(--muted-foreground)] hover:text-[color:var(--primary)] transition-colors"
-              aria-label="Toggle language"
-            >
-              {language === "en" ? "VI" : "EN"}
-            </button>
-            <a href={data.personal.resumeUrl} target="_blank" rel="noopener noreferrer" className={cn(buttonVariants({ size: "sm" }), "rounded-full text-white cursor-pointer hover:bg-blue-700 bg-blue-600 shadow-md shadow-blue-500/20")}>
-              Resume
-            </a>
-          </div>
+          <button
+            onClick={toggleLanguage}
+            className="rounded-[14px] border border-[#191a23] px-[24px] py-[14px] text-[18px] leading-7 text-black transition-colors hover:bg-[#b9ff66]"
+            aria-label="Toggle language"
+          >
+            {language === "en" ? "VI" : "EN"}
+          </button>
         </nav>
 
-        {/* Mobile Nav */}
         <MobileNavigation activeSection={activeSection} />
       </div>
     </header>

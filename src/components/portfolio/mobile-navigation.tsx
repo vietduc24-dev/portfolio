@@ -4,7 +4,6 @@ import { useState } from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { Button, buttonVariants } from "@/components/ui/button";
 import { useLanguage } from "@/context/language-context";
 
 interface MobileNavigationProps {
@@ -17,15 +16,13 @@ export function MobileNavigation({ activeSection }: MobileNavigationProps) {
 
   return (
     <div className="md:hidden">
-      <Button
-        variant="ghost"
-        size="sm"
-        className="px-2 cursor-pointer text-[color:var(--foreground)]"
+      <button
+        className="flex h-11 w-11 cursor-pointer items-center justify-center rounded-[8px] border border-[#191a23] bg-white text-black"
         onClick={() => setIsOpen(!isOpen)}
         aria-label="Toggle menu"
       >
         {isOpen ? <X size={24} /> : <Menu size={24} />}
-      </Button>
+      </button>
 
       {/* Backdrop */}
       {isOpen && (
@@ -38,22 +35,22 @@ export function MobileNavigation({ activeSection }: MobileNavigationProps) {
       {/* Menu */}
       <div
         className={cn(
-          "fixed left-0 right-0 top-[72px] z-50 flex flex-col items-center bg-[color:var(--surface-container)] border-b border-[color:var(--border)] px-6 py-8 transition-transform duration-300 ease-in-out",
+          "fixed left-0 right-0 top-[72px] z-50 flex flex-col items-center border-b border-[#191a23] bg-white px-6 py-8 transition-transform duration-300 ease-in-out",
           isOpen ? "translate-y-0 shadow-xl" : "-translate-y-full opacity-0 pointer-events-none"
         )}
       >
         <nav className="flex flex-col gap-6 p-6">
           <ul className="flex flex-col gap-4">
-            {data.navigation.map((item) => (
+            {data.navigation.filter((item) => item.href !== "#home").map((item) => (
               <li key={item.name} className="w-full text-center">
                 <Link
                   href={item.href}
                   onClick={() => setIsOpen(false)}
                   className={cn(
-                    "block w-full py-2 text-lg font-medium transition-colors hover:text-[color:var(--primary)]",
+                    "block w-full py-2 text-lg font-medium transition-colors hover:text-black",
                     activeSection === item.href.substring(1) 
-                      ? "text-[color:var(--primary)]" 
-                      : "text-[color:var(--muted-foreground)]"
+                      ? "text-black" 
+                      : "text-[#191a23]/70"
                   )}
                 >
                   {item.name}
@@ -62,18 +59,15 @@ export function MobileNavigation({ activeSection }: MobileNavigationProps) {
             ))}
           </ul>
           
-          <div className="h-px w-full bg-[color:var(--border)]" />
+          <div className="h-px w-full bg-[#191a23]" />
           
           <div className="flex items-center justify-between">
             <button
               onClick={toggleLanguage}
-              className="text-sm font-semibold text-[color:var(--muted-foreground)] hover:text-[color:var(--primary)] transition-colors"
+              className="rounded-[14px] border border-[#191a23] px-5 py-3 text-sm font-semibold text-black transition-colors hover:bg-[#b9ff66]"
             >
               Language: {language === "en" ? "EN" : "VI"}
             </button>
-            <a href={data.personal.resumeUrl} target="_blank" rel="noopener noreferrer" className={cn(buttonVariants({ size: "sm" }), "w-full mt-4 justify-center rounded-full bg-blue-600 hover:bg-blue-700 text-white shadow-md")}>
-              Resume
-            </a>
           </div>
         </nav>
       </div>

@@ -35,12 +35,9 @@ export function BackToTop() {
           animate={{ opacity: 1, scale: 1 }}
           exit={{ opacity: 0, scale: 0.5 }}
           onClick={scrollToTop}
-          className="fixed bottom-8 right-8 z-[100] group flex h-14 w-14 items-center justify-center rounded-full bg-blue-600 text-white shadow-lg transition-transform hover:scale-110"
+          className="group fixed bottom-8 right-8 z-[100] flex h-14 w-14 items-center justify-center rounded-full border border-[#191a23] bg-[#b9ff66] text-[#191a23] shadow-[0_5px_0_#191a23] transition-transform hover:-translate-y-1"
           aria-label="Back to top"
         >
-          {/* Blinking/Pulsing Effect */}
-          <span className="absolute inline-flex h-full w-full animate-ping rounded-full bg-blue-400 opacity-75"></span>
-          
           <ArrowUp className="relative z-10 h-6 w-6 group-hover:-translate-y-1 transition-transform" />
         </motion.button>
       )}

@@ -9,16 +9,15 @@ interface SectionHeadingProps {
 
 export function SectionHeading({ title, subtitle, className }: SectionHeadingProps) {
   return (
-    <AnimatedSection className={cn("mb-12 md:mb-16", className)}>
-      <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-[color:var(--on-surface)]">
+    <AnimatedSection className={cn("mx-auto mb-10 flex w-full max-w-[1240px] flex-col gap-5 px-5 md:mb-[80px] md:flex-row md:items-start md:gap-10 md:px-10 lg:px-0", className)}>
+      <h2 className="w-fit rounded-[7px] bg-[#b9ff66] px-[7px] text-[32px] font-medium leading-tight tracking-[0] text-black md:text-[40px]">
         {title}
       </h2>
       {subtitle && (
-        <p className="mt-4 text-lg text-[color:var(--muted-foreground)] max-w-2xl">
+        <p className="max-w-[620px] text-[16px] leading-relaxed text-black md:text-[18px]">
           {subtitle}
         </p>
       )}
-      <div className="mt-6 h-1 w-20 rounded bg-[color:var(--primary)] bg-gradient-to-r from-[color:var(--primary)] to-[color:var(--tertiary)]" />
     </AnimatedSection>
   );
 }

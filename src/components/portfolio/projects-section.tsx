@@ -1,69 +1,46 @@
+/* eslint-disable @next/next/no-img-element */
 "use client";
 
-import { useRef } from "react";
-import { motion } from "framer-motion";
+import { ArrowUpRight } from "lucide-react";
 import { useLanguage } from "@/context/language-context";
+import { SectionHeading } from "./section-heading";
+import { AnimatedSection } from "./animated-section";
 
 export function ProjectsSection() {
-  const containerRef = useRef<HTMLDivElement>(null);
   const { data } = useLanguage();
 
   return (
-    <section id="projects" ref={containerRef} className="py-16 md:py-24 bg-[#f4f4f5] relative rounded-[40px] mt-12 overflow-hidden shadow-sm">
-      {/* Background huge text */}
-      {/* <div className="absolute top-10 left-0 right-0 w-full flex justify-center overflow-hidden pointer-events-none opacity-[0.03]">
-         <h2 className="text-[15vw] font-bold whitespace-nowrap">PORTFOLIO</h2>
-       </div> */}
+    <section id="projects">
+      <SectionHeading title="Projects" subtitle="Selected work across construction SaaS, mobile video, and B2B ecommerce systems." />
 
-      <div className="mx-auto w-full max-w-7xl px-6 lg:px-12 relative z-10">
-        <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, margin: "-100px" }}
-          transition={{ duration: 0.6 }}
-          className="flex items-center gap-4 mb-16"
-        >
-          <h2 className="text-3xl md:text-5xl font-bold text-slate-900 uppercase">
-            /Selected Work
-          </h2>
-        </motion.div>
-
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {data.projects.map((project, index) => {
-            return (
-              <motion.div
-                key={project.id}
-                initial={{ opacity: 0, y: 100 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true, margin: "-100px" }}
-                transition={{ duration: 0.7, delay: (index % 2) * 0.2 }}
-                className="group flex flex-col gap-6"
-              >
-                <div className="w-full aspect-[4/3] rounded-3xl overflow-hidden bg-slate-200 relative group-hover:shadow-xl transition-all duration-500">
-                  {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img
-                    src={project.image}
-                    alt={project.title}
-                    className="object-cover w-full h-full transition-transform duration-700 group-hover:scale-105"
-                    loading="lazy"
-                  />
+      <div className="mx-auto grid w-full max-w-[1240px] grid-cols-1 gap-10 px-5 md:px-10 lg:grid-cols-3 lg:px-0">
+        {data.projects.map((project, index) => (
+          <AnimatedSection
+            animation="slide-up"
+            delay={`stagger-${(index % 3) + 1}` as "stagger-1" | "stagger-2" | "stagger-3"}
+            key={project.id}
+          >
+            <article className="group h-full overflow-hidden rounded-[32px] border border-[#191a23] bg-white shadow-[0_5px_0_#191a23] md:rounded-[45px]">
+              <div className="h-52 overflow-hidden bg-[#f3f3f3]">
+                <img alt={project.title} className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105" loading="lazy" src={project.image} />
+              </div>
+              <div className="flex min-h-[360px] flex-col gap-5 p-8">
+                <h3 className="text-[26px] font-medium leading-tight tracking-[0] text-black">{project.title}</h3>
+                <p className="text-[17px] leading-relaxed text-black">{project.description}</p>
+                <div className="mt-auto flex flex-wrap gap-2">
+                  {project.techStack.map((tech) => (
+                    <span className="rounded-full bg-[#b9ff66] px-3 py-1 text-[14px] text-black" key={tech}>
+                      {tech}
+                    </span>
+                  ))}
                 </div>
-
-                <div className="flex flex-col">
-                  <h3 className="text-2xl font-bold text-slate-900 mb-2">{project.title}</h3>
-                  <p className="text-slate-600 mb-4 line-clamp-2">{project.description}</p>
-                  <div className="flex flex-wrap gap-2 mt-auto">
-                    {project.techStack.map((tech: string) => (
-                      <span key={tech} className="text-xs font-semibold bg-white border border-slate-200 px-3 py-1 rounded-full text-slate-700">
-                        {tech}
-                      </span>
-                    ))}
-                  </div>
-                </div>
-              </motion.div>
-            );
-          })}
-        </div>
+                <a className="flex items-center gap-3 text-[18px] text-black" href={project.github}>
+                  View source <ArrowUpRight className="h-5 w-5" />
+                </a>
+              </div>
+            </article>
+          </AnimatedSection>
+        ))}
       </div>
     </section>
   );
