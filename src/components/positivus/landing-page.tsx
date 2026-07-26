@@ -128,7 +128,7 @@ export function PositivusLandingPage() {
             <div className="absolute left-[7%] top-[28%] h-[68%] w-[78%] rounded-[50%] border-[22px] border-[#191a23] rotate-[29deg]" />
             <div className="absolute left-[2%] top-[41%] h-[68%] w-[78%] rounded-[50%] border-[22px] border-[#191a23] rotate-[29deg]" />
             <div className="absolute left-[22%] top-[2%] h-[360px] w-[270px] overflow-hidden rounded-[45px] border border-[#191a23] bg-[#f3f3f3] shadow-[0_5px_0_#191a23]">
-              <img alt={data.personal.name} className="h-full w-full object-cover" src={imageUrl("images/home.JPG")} />
+              <img alt={data.personal.name} className="h-full w-full object-cover" src={imageUrl("images/Avatar2.JPG")} />
             </div>
             <div className="absolute left-[67%] top-[8%] flex h-20 w-20 items-center justify-center rounded-full bg-[#b9ff66] text-[36px] font-medium">★</div>
             <div className="absolute left-[7%] top-[9%] text-[52px]">✦</div>
