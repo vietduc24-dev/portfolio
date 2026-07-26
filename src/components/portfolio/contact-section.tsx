@@ -26,7 +26,7 @@ export function ContactSection() {
               </a>
             ))}
           </div>
-          <a className="rounded-[14px] bg-[#191a23] px-[35px] py-5 text-center text-[20px] leading-7 text-white" href={`mailto:${data.personal.email}`}>
+          <a className="rounded-[14px] bg-[#191a23] px-[35px] py-5 text-center text-[20px] leading-7 !text-white" href={`mailto:${data.personal.email}`}>
             Send Message
           </a>
         </div>
