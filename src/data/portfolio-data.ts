@@ -14,7 +14,7 @@ const enData = {
     name: "Tran Viet Duc",
     title: "Junior Software Engineer",
     description: "Building high-performance web applications and flexible backend systems.",
-    about: "Experienced in building high-performance web applications with Next.js and developing flexible backend systems using Python and Laravel. Currently expanding my expertise in AWS cloud services with a focus on infrastructure optimization and deployment automation. Additionally, I have a solid foundation in React Native and Flutter, enabling me to contribute to cross-platform application development when needed.",
+    about: "Experienced in building high-performance web applications with Next.js and developing scalable backend systems using Python and Laravel. Experienced in maintaining production systems, deploying applications across development, staging, and production environments, and managing mobile application releases on the Apple App Store and Google Play. Currently expanding expertise in AWS Cloud, with a focus on infrastructure optimization, Docker-based containerization, and CI/CD automation.",
     resumeUrl: "#",
     email: "tranvietduc2411@gmail.com",
     phone: "0886542959",
@@ -178,7 +178,7 @@ const viData: typeof enData = {
     ...enData.personal,
     title: "Kỹ sư Phần mềm",
     description: "Xây dựng các ứng dụng web hiệu năng cao và hệ thống backend linh hoạt.",
-    about: "Có kinh nghiệm xây dựng các ứng dụng web hiệu năng cao với Next.js và phát triển các hệ thống backend linh hoạt bằng Python và Laravel. Hiện tại, tôi đang mở rộng chuyên môn về các dịch vụ AWS với trọng tâm là tối ưu hóa cơ sở hạ tầng và tự động hóa triển khai. Ngoài ra, tôi có nền tảng vững chắc về React Native và Flutter, giúp tôi có thể đóng góp vào phát triển ứng dụng đa nền tảng khi cần thiết.",
+    about: "Có kinh nghiệm xây dựng các ứng dụng web hiệu năng cao bằng Next.js và phát triển các hệ thống backend có khả năng mở rộng bằng Python và Laravel. Có kinh nghiệm vận hành, bảo trì hệ thống production, triển khai ứng dụng trên các môi trường development, staging và production, đồng thời quản lý quá trình phát hành ứng dụng di động trên Apple App Store và Google Play.Hiện đang tiếp tục mở rộng chuyên môn về AWS Cloud, tập trung vào tối ưu hạ tầng, container hóa bằng Docker và tự động hóa quy trình CI/CD.",
   },
   navigation: [
     { name: "Trang chủ", href: "#home" },
